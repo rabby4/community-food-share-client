@@ -4,7 +4,6 @@ import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
-    console.log(user)
 
     const navLinks = <>
         <li><NavLink
@@ -22,7 +21,6 @@ const Navbar = () => {
             .then()
             .catch()
     }
-
 
     return (
         <div className="bg-green-700">

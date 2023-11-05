@@ -12,8 +12,6 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
-    console.log(location)
-
     const handleRegister = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -21,7 +19,6 @@ const Register = () => {
         const email = form.get('email')
         const photo = form.get('photo')
         const password = form.get('password')
-        console.log(name, email, photo, password);
 
         if (password.length < 6) {
             toast.error('Password should be at least 6 characters!')
@@ -42,12 +39,17 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
-                console.log(result.user)
+                const user = result.user;
+                console.log(user)
+
+
                 updateProfile(result.user, {
                     displayName: name,
                     photoURL: photo
+
                 })
                     .then(() => {
+                        console.log(user.displayName)
                         navigate(location?.state ? location.state : '/')
                     })
                 toast.success('Registration Successful!')
