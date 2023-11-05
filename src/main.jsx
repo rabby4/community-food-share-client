@@ -12,12 +12,14 @@ import Login from './components/pages/login/Login';
 import AuthProvider from './components/provider/AuthProvider';
 import Register from './components/pages/register/Register';
 import { Toaster } from 'react-hot-toast';
+import Error from './components/pages/error/Error';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <Error></Error>,
     children: [
       {
         index: true,
