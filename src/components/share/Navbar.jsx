@@ -15,6 +15,8 @@ const Navbar = () => {
         </NavLink></li>
         <li><NavLink to='/addFood'>Add Food</NavLink></li>
         <li><NavLink to='/availableFood'>Available Food</NavLink></li>
+        <li><NavLink to='/manageFood'>Manage My Food</NavLink></li>
+        <li><NavLink to='/foodRequest'>My Food Request</NavLink></li>
     </>
     const signOut = () => {
         logout()
@@ -30,14 +32,14 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu-md bg-black text-white for-mobile font-medium dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
+                        <ul tabIndex={0} className="menu-md bg-base-100 text-black for-mobile font-medium dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
                             {navLinks}
                         </ul>
                     </div>
                     <img className="w-48" src="https://i.ibb.co/4JmD8cV/CFS-logo-white-CU-182.png" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" menu-horizontal px-1 text-lg text-white">
+                    <ul className=" menu-horizontal px-1 text-base text-white">
                         {navLinks}
                     </ul>
                 </div>

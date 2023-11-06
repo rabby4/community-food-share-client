@@ -34,10 +34,9 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             setIsLoading(false)
         })
-        return () => {
-            return unsubscribe
-        }
-    }, [isLoading])
+        return unsubscribe;
+
+    }, [])
 
     const authInfo = {
         user,

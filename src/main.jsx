@@ -13,6 +13,11 @@ import AuthProvider from './components/provider/AuthProvider';
 import Register from './components/pages/register/Register';
 import { Toaster } from 'react-hot-toast';
 import Error from './components/pages/error/Error';
+import AddFood from './components/pages/addFood/AddFood';
+import ManageFood from './components/pages/manageFood/ManageFood';
+import FoodRequest from './components/pages/foodRequest/FoodRequest';
+import AvailableFood from './components/pages/availableFood/AvailableFood';
+import PrivateRoute from './components/router/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -25,12 +30,28 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>
       }, {
-        path: 'login',
+        path: '/login',
         element: <Login></Login>
       },
       {
-        path: 'register',
+        path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/addFood',
+        element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
+      },
+      {
+        path: '/availableFood',
+        element: <AvailableFood></AvailableFood>
+      },
+      {
+        path: '/manageFood',
+        element: <ManageFood></ManageFood>
+      },
+      {
+        path: '/foodRequest',
+        element: <FoodRequest></FoodRequest>
       }
     ]
   },
