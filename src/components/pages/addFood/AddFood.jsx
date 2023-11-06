@@ -52,39 +52,39 @@ const AddFood = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Your Name</span>
                                     </label>
-                                    <input type="text" value={user?.displayName} name='user_name' className="input input-bordered" readOnly />
+                                    <input type="text" value={user?.displayName} name='user_name' className="input input-bordered focus-within:outline-none" readOnly />
                                 </div>
                                 <div className="form-control mb-3 md:w-1/2">
                                     <label className="label">
                                         <span className="label-text font-semibold">Your Email</span>
                                     </label>
-                                    <input type="text" value={user?.email} name='email' className="input input-bordered" readOnly />
+                                    <input type="text" value={user?.email} name='email' className="input input-bordered focus-within:outline-none" readOnly />
                                 </div>
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text font-medium">Your Image</span>
                                 </label>
-                                <input type="text" value={user?.photoURL} name='donar_img' className="input input-bordered" readOnly />
+                                <input type="text" value={user?.photoURL} name='donar_img' className="input input-bordered focus-within:outline-none" readOnly />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text font-semibold">Food Name</span>
                                 </label>
-                                <input type="text" placeholder="Write your Food name..." name='food_title' className="input input-bordered" required />
+                                <input type="text" placeholder="Write your Food name..." name='food_title' className="input input-bordered focus-within:outline-none" required />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text font-medium">URL of Food</span>
                                 </label>
-                                <input type="text" placeholder="Food Photo URL..." name='food_img' className="input input-bordered" required />
+                                <input type="text" placeholder="Food Photo URL..." name='food_img' className="input input-bordered focus-within:outline-none" required />
                             </div>
                             <div className='flex gap-5 md:flex-row flex-col'>
                                 <div className="form-control mb-3 md:w-1/2">
                                     <label className="label">
                                         <span className="label-text font-semibold">Quantity</span>
                                     </label>
-                                    <input type="text" placeholder="Food Quantity.." name='quantity' className="input input-bordered" required />
+                                    <input type="text" placeholder="Food Quantity.." name='quantity' className="input input-bordered focus-within:outline-none" required />
                                 </div>
                                 <div className="form-control md:w-1/2">
                                     <label className="label">
@@ -98,20 +98,20 @@ const AddFood = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Pickup Location</span>
                                     </label>
-                                    <input type="text" placeholder="Location..." name='location' className="input input-bordered" required />
+                                    <input type="text" placeholder="Location..." name='location' className="input input-bordered focus-within:outline-none" required />
                                 </div>
                                 <div className="form-control mb-3 md:w-1/2">
                                     <label className="label">
                                         <span className="label-text font-semibold">Status</span>
                                     </label>
-                                    <input type="text" placeholder="Food status..." name='status' className="input input-bordered" required />
+                                    <input type="text" placeholder="Food status..." name='status' className="input input-bordered focus-within:outline-none" required />
                                 </div>
                             </div>
                             <div className="form-control mb-3 w-full">
                                 <label className="label">
                                     <span className="label-text font-semibold">Additional Notes</span>
                                 </label>
-                                <textarea className="textarea textarea-bordered" name='note' placeholder="Write additional notes..."></textarea>
+                                <textarea className="textarea textarea-bordered focus-within:outline-none" name='note' placeholder="Write additional notes..."></textarea>
                             </div>
                             <div className="form-control">
                                 <button className="btn bg-green-600 hover:bg-green-500 text-white text-base">Add Your Food</button>

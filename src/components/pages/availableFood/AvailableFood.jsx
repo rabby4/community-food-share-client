@@ -7,6 +7,7 @@ import { GoNumber } from 'react-icons/go';
 const AvailableFood = () => {
     const { isLoading } = useAuth()
     const [foods, setFoods] = useState()
+    const [searchItems, setSearchItems] = useState('')
     const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
@@ -19,24 +20,26 @@ const AvailableFood = () => {
             })
     }, [axiosSecure])
 
+    const filteredFoodItems = searchItems ? foods.filter(food => food.foodTitle.toLowerCase().includes(searchItems.toLowerCase())) : foods;
+
     if (isLoading) {
         return 'loading...'
     }
-    // userName, email, userImg, foodTitle, foodImg, quantity, expDate, location, status, notes
-    console.log(foods)
+
     return (
         <div className="max-w-7xl mx-auto my-28">
             <div>
                 <h2 className="text-5xl font-bold my-14 text-center">Available Foods</h2>
             </div>
-            <div>
-                <div>
-                    <input type="text" />
+            <div className="my-14">
+                <div className="join">
+                    <input className="input input-bordered join-item focus-within:outline-none" type="text" placeholder="Search Food..." id="searchBox" value={searchItems} onChange={(e) => setSearchItems(e.target.value)} />
+                    <button className="btn join-item" onClick={() => setSearchItems('')}>Clear</button>
                 </div>
             </div>
             <div className="grid grid-cols-3 gap-10">
                 {
-                    foods?.map(food => <div key={food._id}>
+                    filteredFoodItems?.map(food => <div key={food._id}>
                         <div className="card bg-[#f9f9f9] shadow-md">
                             <div className="flex items-center justify-center p-8">
                                 <img src={food.foodImg} alt={food.foodTitle} className="w-2/3" />
