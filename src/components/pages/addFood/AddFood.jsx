@@ -1,9 +1,12 @@
 import Lottie from "lottie-react";
-import Donation from '/public/donation.json'
+import Donation from '../../../assets/donation.json'
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const AddFood = () => {
     const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
     console.log(user)
 
     const handleAddFood = (e) => {
@@ -21,7 +24,20 @@ const AddFood = () => {
         const notes = form.get('note');
         const newFood = { userName, email, userImg, foodTitle, foodImg, quantity, expDate, location, status, notes }
         console.log(newFood)
+
+        axiosSecure.post('/foods', newFood)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.acknowledged === true) {
+                    toast.success('Food uploaded successfully')
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
+
+
     return (
         <div>
             <div className='max-w-7xl mx-auto lg:px-0 md:px-10 px-5 my-32'>
@@ -36,20 +52,20 @@ const AddFood = () => {
                                     <label className="label">
                                         <span className="label-text font-semibold">Your Name</span>
                                     </label>
-                                    <input type="text" defaultValue={user?.displayName} name='user_name' className="input input-bordered" />
+                                    <input type="text" value={user?.displayName} name='user_name' className="input input-bordered" readOnly />
                                 </div>
                                 <div className="form-control mb-3 md:w-1/2">
                                     <label className="label">
                                         <span className="label-text font-semibold">Your Email</span>
                                     </label>
-                                    <input type="text" defaultValue={user?.email} name='email' className="input input-bordered" />
+                                    <input type="text" value={user?.email} name='email' className="input input-bordered" readOnly />
                                 </div>
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
                                     <span className="label-text font-medium">Your Image</span>
                                 </label>
-                                <input type="text" defaultValue={user?.photoURL} name='donar_img' className="input input-bordered" />
+                                <input type="text" value={user?.photoURL} name='donar_img' className="input input-bordered" readOnly />
                             </div>
                             <div className="form-control mb-3">
                                 <label className="label">
