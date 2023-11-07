@@ -2,17 +2,39 @@ import { GoNumber } from "react-icons/go";
 import { IoArrowUndoSharp, IoCalendarNumberOutline, IoLocationOutline } from "react-icons/io5";
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const FoodDetails = () => {
     const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
     const food = useLoaderData()
-    const { _id, userName, email, foodTitle, foodImg, expDate, location, notes } = food
-    console.log(food)
+    const { _id, userName, email, foodTitle, foodImg, expDate, location, status, notes } = food;
 
     const date = new Date()
 
-    const handleRequestFood = () => {
-
+    const handleRequestFood = (e) => {
+        e.preventDefault()
+        const form = new FormData(e.currentTarget);
+        const donorName = form.get('donor_name');
+        const donorEmail = form.get('donor_email');
+        const foodTitle = form.get('food_title');
+        const foodImg = form.get('food_img');
+        const name = form.get('name')
+        const email = form.get('email')
+        const location = form.get('location');
+        const expDate = form.get('date');
+        const reqDate = form.get('req_date');
+        const price = form.get('money')
+        const notes = form.get('note');
+        const newFoodRequest = { donorName, donorEmail, foodTitle, foodImg, name, email, location, expDate, reqDate, price, notes, status }
+        console.log(newFoodRequest)
+        axiosSecure.post('/request', newFoodRequest)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
 
@@ -86,7 +108,7 @@ const FoodDetails = () => {
                                                 <label className="label">
                                                     <span className="label-text font-medium">Food Image</span>
                                                 </label>
-                                                <input type="text" value={user?.photoURL} name='donar_img' className="input input-bordered focus-within:outline-none" readOnly />
+                                                <input type="text" value={foodImg} name='food_img' className="input input-bordered focus-within:outline-none" readOnly />
                                             </div>
 
                                             <div className="flex gap-5 md:flex-row flex-col">
@@ -147,10 +169,10 @@ const FoodDetails = () => {
                                                     <button className="btn bg-lime-500 hover:bg-transparent hover:border-2 hover:border-green-500 hover:text-black text-white text-base">Request A Food</button>
                                                 </div>
                                                 <div className="mt-0 flex-1">
-                                                    <form method="dialog w-full">
+                                                    <div method="dialog w-full">
                                                         {/* if there is a button, it will close the modal */}
                                                         <button className="btn text-base w-full border-2 border-green-600 bg-transparent hover:bg-lime-500 hover:text-white">Close</button>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
