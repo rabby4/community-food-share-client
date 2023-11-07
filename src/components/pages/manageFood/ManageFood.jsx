@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useTable } from 'react-table'
+import { Link } from "react-router-dom";
 
 const ManageFood = () => {
-    const { user, isLoading } = useAuth()
+    const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [managedFood, setManagedFood] = useState([])
     useEffect(() => {
@@ -13,16 +15,70 @@ const ManageFood = () => {
             })
     }, [axiosSecure, user?.email])
 
-    if (isLoading) {
-        return 'loading...'
-    }
+    const data = React.useMemo(() => managedFood, [managedFood])
+    const columns = React.useMemo(() => [
+        {
+            Header: 'Food Name',
+            accessor: "foodTitle"
+        },
+        {
+            Header: 'Quantity',
+            accessor: "quantity"
+        },
+        {
+            Header: 'Expire Date',
+            accessor: "expDate"
+        },
+        {
+            Header: 'Pickup Location',
+            accessor: "location"
+        },
+        {
+            Header: 'Update',
+            Cell: () => {
+                return <Link to='/update/'>Update</Link>;
+            },
+        }
+    ], []);
 
-    console.log(managedFood)
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
+
 
     return (
+
         <div>
-            <h2 className="text-4xl">manage your food {managedFood.length}</h2>
+            <div className="max-w-7xl mx-auto my-28">
+                <table {...getTableProps()}>
+                    <thead className="">
+                        {headerGroups.map((headerGroup) => (
+                            <tr key={headerGroup.id} {...headerGroup.getFooterGroupProps()}>
+                                {headerGroup.headers.map((column) => (
+                                    <th key={column.id} {...column.getHeaderProps()} className="border-2 border-green-500 px-6 text-center">
+                                        {column.render('Header')}
+                                    </th>
+                                ))}
+                            </tr>
+                        ))}
+                    </thead>
+                    <tbody {...getTableBodyProps()}>
+                        {rows.map((row) => {
+                            prepareRow(row)
+                            return (
+                                <tr key={row.id} {...row.getRowProps()}>
+                                    {row.cells.map((cell) => (
+                                        <td key={cell.id} {...cell.getCellProps()} className="border-2 border-green-500 px-6 text-center">
+                                            {cell.render('Cell')}
+                                        </td>
+                                    ))}
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+
+            </div>
         </div>
+
     );
 };
 
