@@ -23,11 +23,9 @@ const AddFood = () => {
         const status = form.get('status');
         const notes = form.get('note');
         const newFood = { userName, email, userImg, foodTitle, foodImg, quantity, expDate, location, status, notes }
-        console.log(newFood)
 
         axiosSecure.post('/foods', newFood)
             .then(res => {
-                console.log(res.data)
                 if (res.data.acknowledged === true) {
                     toast.success('Food uploaded successfully')
                 }

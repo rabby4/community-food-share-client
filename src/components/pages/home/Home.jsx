@@ -1,6 +1,37 @@
 import CountUp from 'react-countup';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useEffect, useState } from 'react';
+import { GoNumber } from 'react-icons/go';
+import { IoCalendarNumberOutline, IoLocationOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+    const [foods, setFoods] = useState()
+    const axiosSecure = useAxiosSecure()
+
+    useEffect(() => {
+        axiosSecure.get('/foods')
+            .then(res => {
+                setFoods(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [axiosSecure])
+
+    const sortFoodByDate = (data) => {
+        return data?.sort((a, b) => {
+            const firstData = new Date(a.expDate)
+            const secondData = new Date(b.expDate)
+            return firstData - secondData
+        })
+    }
+
+    const sortFoods = sortFoodByDate(foods)
+
+
+
+
     return (
         <div>
             <div className="hero min-h-[700px]" style={{ backgroundImage: 'url(https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/Feeding-Families-mother-and-daughter.png)' }}>
@@ -13,6 +44,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
             <div className="bg-cover bg-center py-36" style={{ backgroundImage: 'url(https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/03/map.jpg)' }}>
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-10">

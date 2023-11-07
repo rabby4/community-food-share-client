@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { IoCalendarNumberOutline, IoLocationOutline } from 'react-icons/io5';
 import { GoNumber } from 'react-icons/go';
+import { Link } from "react-router-dom";
 
 const AvailableFood = () => {
     const { isLoading } = useAuth()
@@ -34,7 +35,7 @@ const AvailableFood = () => {
             <div className="my-14">
                 <div className="join">
                     <input className="input input-bordered join-item focus-within:outline-none" type="text" placeholder="Search Food..." id="searchBox" value={searchItems} onChange={(e) => setSearchItems(e.target.value)} />
-                    <button className="btn join-item" onClick={() => setSearchItems('')}>Clear</button>
+                    <button className="btn join-item bg-lime-500 text-white px-7 hover:bg-lime-600" onClick={() => setSearchItems('')}>Clear</button>
                 </div>
             </div>
             <div className="grid grid-cols-3 gap-10">
@@ -63,7 +64,9 @@ const AvailableFood = () => {
                                     <p className="flex items-center gap-2"> <IoCalendarNumberOutline className="text-xl"></IoCalendarNumberOutline> <span className="font-semibold">Expire Date:</span> {food.expDate}</p>
                                 </div>
                                 <div className="card-actions justify-end">
-                                    <button className="btn bg-lime-500 hover:bg-lime-600 text-white px-10">Details</button>
+                                    <Link to={`/details/${food._id}`}>
+                                        <button className="btn bg-lime-500 hover:bg-lime-600 text-white px-10">Details</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

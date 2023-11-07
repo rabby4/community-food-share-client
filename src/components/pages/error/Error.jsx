@@ -8,7 +8,6 @@ const Error = () => {
         <div className="flex justify-center items-center h-screen">
             {
                 error.status === 404 && <div className="text-center">
-                    {/* <h2 className="text-4xl font-bold mb-4">Page Not Found</h2> */}
                     <div className='max-w-2xl'>
                         <Lottie animationData={errorPage}></Lottie>
                     </div>
