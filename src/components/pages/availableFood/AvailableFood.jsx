@@ -9,18 +9,19 @@ const AvailableFood = () => {
     const { isLoading } = useAuth()
     const [foods, setFoods] = useState()
     const [searchItems, setSearchItems] = useState('')
+    // const [filterByDate, setFilterByDate] = useState()
     const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
         axiosSecure.get('/foods')
             .then(res => {
                 setFoods(res.data)
+                // setFilterByDate(res.data)
             })
             .catch(err => {
                 console.log(err)
             })
     }, [axiosSecure])
-
     const filteredFoodItems = searchItems ? foods.filter(food => food.foodTitle.toLowerCase().includes(searchItems.toLowerCase())) : foods;
 
     if (isLoading) {
@@ -32,11 +33,16 @@ const AvailableFood = () => {
             <div>
                 <h2 className="text-5xl font-bold my-14 text-center">Available Foods</h2>
             </div>
-            <div className="my-14">
+            <div className="flex justify-between my-14">
                 <div className="join">
                     <input className="input input-bordered join-item focus-within:outline-none" type="text" placeholder="Search Food..." id="searchBox" value={searchItems} onChange={(e) => setSearchItems(e.target.value)} />
                     <button className="btn join-item bg-lime-500 text-white px-7 hover:bg-lime-600" onClick={() => setSearchItems('')}>Clear</button>
                 </div>
+                <select className="select select-bordered w-full max-w-xs">
+                    <option>All</option>
+                    <option>Han Solo</option>
+                    <option>Greedo</option>
+                </select>
             </div>
             <div className="grid grid-cols-3 gap-10">
                 {

@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 const AddFood = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
-    console.log(user)
 
     const handleAddFood = (e) => {
         e.preventDefault()

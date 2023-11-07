@@ -3,6 +3,7 @@ import { IoArrowUndoSharp, IoCalendarNumberOutline, IoLocationOutline } from "re
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const FoodDetails = () => {
     const { user } = useAuth()
@@ -30,7 +31,9 @@ const FoodDetails = () => {
         console.log(newFoodRequest)
         axiosSecure.post('/request', newFoodRequest)
             .then(res => {
-                console.log(res.data)
+                if (res.data.acknowledged === true) {
+                    toast.success('Food uploaded successfully')
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -72,7 +75,7 @@ const FoodDetails = () => {
                             <button className="btn bg-lime-500 px-10 text-white hover:bg-lime-600" onClick={() => document.getElementById(_id).showModal()}>Request Food</button>
                             <dialog id={_id} className="modal">
                                 <div className="modal-box w-11/12 max-w-5xl">
-                                    <div className='card flex-shrink-0 shadow-xl'>
+                                    <div className='card flex-shrink-0'>
                                         <form onSubmit={handleRequestFood} className="card-body">
                                             <div className="flex gap-5 md:flex-row flex-col">
                                                 <div className="form-control mb-3 md:w-1/2">
@@ -164,17 +167,16 @@ const FoodDetails = () => {
                                                 <textarea className="textarea textarea-bordered focus-within:outline-none" name='note' placeholder="Write additional notes..."></textarea>
                                             </div>
 
-                                            <div className="flex items-center gap-10">
-                                                <div className="form-control flex-1">
-                                                    <button className="btn bg-lime-500 hover:bg-transparent hover:border-2 hover:border-green-500 hover:text-black text-white text-base">Request A Food</button>
-                                                </div>
-                                                <div className="mt-0 flex-1">
-                                                    <div method="dialog w-full">
-                                                        {/* if there is a button, it will close the modal */}
-                                                        <button className="btn text-base w-full border-2 border-green-600 bg-transparent hover:bg-lime-500 hover:text-white">Close</button>
-                                                    </div>
+                                            <div className="flex justify-end gap-10">
+                                                <div className="form-control">
+                                                    <button className="btn bg-lime-500 hover:bg-transparent hover:border-2 hover:border-green-500 hover:text-black text-white text-base px-10">Request A Food</button>
                                                 </div>
                                             </div>
+                                        </form>
+                                    </div>
+                                    <div className="modal-action px-8 mt-0">
+                                        <form method="dialog w-full">
+                                            <button className="btn text-base w-full border-2 border-green-600 bg-transparent hover:bg-lime-500 hover:text-white px-20">Close</button>
                                         </form>
                                     </div>
                                 </div>
