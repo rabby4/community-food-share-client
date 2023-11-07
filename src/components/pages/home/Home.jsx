@@ -44,7 +44,51 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+            <div className='max-w-7xl mx-auto my-28'>
+                <div className='my-20'>
+                    <h2 className='lg:text-5xl md:text-4xl text-3xl font-bold text-center'>Featured Foods</h2>
+                </div>
+                <div className="grid grid-cols-3 gap-10">
+                    {
+                        sortFoods?.slice(0, 6).map(food => <div key={food._id}>
+                            <div className="card bg-[#f9f9f9] shadow-md">
+                                <div className="flex items-center justify-center p-8">
+                                    <img src={food.foodImg} alt={food.foodTitle} className="w-2/3" />
+                                </div>
+                                <div className="card-body">
+                                    <h2 className="card-title">
+                                        {food.foodTitle}
+                                        <div className="badge bg-green-600 text-white">{food.status}</div>
+                                    </h2>
+                                    <p>{food.notes.slice(0, 100)}...</p>
+                                    <div className="flex items-center gap-3 my-2">
+                                        <img src={food.userImg} alt="" className="rounded-full w-12 h-12" />
+                                        <div>
+                                            <p className="font-semibold">Donator: </p>
+                                            <p>{food.userName}</p>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <p className="flex items-center gap-2"> <GoNumber className="text-xl"></GoNumber> <span className="font-semibold">Quantity:</span> {food.quantity}</p>
+                                        <p className="flex items-center gap-2"> <IoLocationOutline className="text-xl"></IoLocationOutline> <span className="font-semibold">Location:</span> {food.location}</p>
+                                        <p className="flex items-center gap-2"> <IoCalendarNumberOutline className="text-xl"></IoCalendarNumberOutline> <span className="font-semibold">Expire Date:</span> {food.expDate}</p>
+                                    </div>
+                                    <div className="card-actions justify-end">
+                                        <Link to={`/details/${food._id}`}>
+                                            <button className="btn bg-lime-500 hover:bg-lime-600 text-white px-10">Details</button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>)
+                    }
+                </div>
+                <div className='my-20 text-center'>
+                    <Link to='/availableFood'>
+                        <button className='btn bg-green-600 hover:bg-green-700 text-white'>Show All Foods</button>
+                    </Link>
+                </div>
+            </div>
             <div className="bg-cover bg-center py-36" style={{ backgroundImage: 'url(https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/03/map.jpg)' }}>
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-10">
