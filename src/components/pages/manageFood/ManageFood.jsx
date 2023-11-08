@@ -44,15 +44,7 @@ const ManageFood = () => {
                     <button className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500	ml-4">Delete</button>
                 </div>
             ),
-        },
-        // {
-        //     Header: 'Manage',
-        //     accessor: '_id',
-        //     Cell: (row) => {
-        //         return <Link to={`/manage/${row.value}`}>Manage</Link>;
-        //     },
-        //     show: false,
-        // }
+        }
     ], []);
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })

@@ -9,6 +9,7 @@ const FoodDetails = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const food = useLoaderData()
+    // console.log(food)
     const { _id, userName, email, foodTitle, foodImg, expDate, location, status, notes } = food;
 
     const date = new Date()
@@ -22,13 +23,16 @@ const FoodDetails = () => {
         const foodImg = form.get('food_img');
         const name = form.get('name')
         const email = form.get('email')
+        const userImg = form.get('user_img')
         const location = form.get('location');
         const expDate = form.get('date');
         const reqDate = form.get('req_date');
-        const price = form.get('money')
-        const notes = form.get('note');
-        const newFoodRequest = { donorName, donorEmail, foodTitle, foodImg, name, email, location, expDate, reqDate, price, notes, status }
+        const price = form.get('money') || '';
+        const notes = form.get('note') || '';
+        const foodId = form.get('food_id')
+        const newFoodRequest = { foodId, donorName, donorEmail, foodTitle, foodImg, name, email, userImg, location, expDate, reqDate, price, notes, status }
         console.log(newFoodRequest)
+
         axiosSecure.post('/request', newFoodRequest)
             .then(res => {
                 if (res.data.acknowledged === true) {
@@ -129,6 +133,12 @@ const FoodDetails = () => {
                                                 </div>
                                             </div>
 
+                                            <div className="form-control mb-3">
+                                                <label className="label">
+                                                    <span className="label-text font-medium">Your Image</span>
+                                                </label>
+                                                <input type="text" value={user?.photoURL} name='user_img' className="input input-bordered focus-within:outline-none" readOnly />
+                                            </div>
 
                                             <div className='flex gap-5 md:flex-row flex-col'>
                                                 <div className="form-control mb-3 md:w-1/2">

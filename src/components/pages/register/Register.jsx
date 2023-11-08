@@ -41,8 +41,6 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-
-
                 updateProfile(result.user, {
                     displayName: name,
                     photoURL: photo
