@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const FoodDetails = () => {
     const { user } = useAuth()
@@ -47,151 +48,156 @@ const FoodDetails = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto">
-            <div className='my-10 lg:px-0 md:px-10 px-5'>
-                <Link to='/availableFood'>
-                    <button className='flex items-center gap-2 font-medium hover:text-green-500'><IoArrowUndoSharp></IoArrowUndoSharp>Back to Available Food Page</button>
-                </Link>
-            </div>
-            <div className="my-10">
-                <div className="card lg:card-side">
-                    <figure className="w-1/2">
-                        <img src={food?.foodImg} alt="Album" />
-                    </figure>
-                    <div className="card-body w-1/2">
-                        <h2 className="card-title text-5xl font-bold">{food?.foodTitle}</h2>
-                        <div>
-                            <p>{food?.notes}</p>
-                        </div>
-                        <div className="flex items-center gap-3 my-5">
-                            <img src={food?.userImg} alt="" className="rounded-full w-12 h-12" />
+        <div>
+            <Helmet>
+                <title>Food Share || Details of {food.foodTitle} Food</title>
+            </Helmet>
+            <div className="max-w-7xl mx-auto">
+                <div className='my-10 lg:px-0 md:px-10 px-5'>
+                    <Link to='/availableFood'>
+                        <button className='flex items-center gap-2 font-medium hover:text-green-500'><IoArrowUndoSharp></IoArrowUndoSharp>Back to Available Food Page</button>
+                    </Link>
+                </div>
+                <div className="my-10">
+                    <div className="card lg:card-side">
+                        <figure className="w-1/2">
+                            <img src={food?.foodImg} alt="Album" />
+                        </figure>
+                        <div className="card-body w-1/2">
+                            <h2 className="card-title text-5xl font-bold">{food?.foodTitle}</h2>
                             <div>
-                                <p className="font-semibold">Donator: </p>
-                                <p>{food?.userName}</p>
+                                <p>{food?.notes}</p>
                             </div>
-                        </div>
-                        <div className="flex gap-2 flex-wrap">
-                            <p className="flex items-center gap-2"> <GoNumber className="text-xl"></GoNumber> <span className="font-semibold">Quantity:</span> {food.quantity}</p>
-                            <p className="flex items-center gap-2"> <IoLocationOutline className="text-xl"></IoLocationOutline> <span className="font-semibold">Location:</span> {food.location}</p>
-                            <p className="flex items-center gap-2"> <IoCalendarNumberOutline className="text-xl"></IoCalendarNumberOutline> <span className="font-semibold">Expire Date:</span> {food.expDate}</p>
-                        </div>
-                        <div className="card-actions justify-end">
-                            {/* Modal */}
-                            <button className="btn bg-lime-500 px-10 text-white hover:bg-lime-600" onClick={() => document.getElementById(_id).showModal()}>Request Food</button>
-                            <dialog id={_id} className="modal">
-                                <div className="modal-box w-11/12 max-w-5xl">
-                                    <div className='card flex-shrink-0'>
-                                        <form onSubmit={handleRequestFood} className="card-body">
-                                            <div className="flex gap-5 md:flex-row flex-col">
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Donor Name</span>
-                                                    </label>
-                                                    <input type="text" value={food?.userName} name='donor_name' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Donor Email</span>
-                                                    </label>
-                                                    <input type="text" value={food?.email} name='donor_email' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                            </div>
-
-                                            <div className="flex gap-5 md:flex-row flex-col">
-                                                <div className="form-control mb-3 w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Food Name</span>
-                                                    </label>
-                                                    <input type="text" value={food?.foodTitle} name='food_title' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Food ID</span>
-                                                    </label>
-                                                    <input type="text" value={food?._id} name='food_id' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                            </div>
-
-                                            <div className="form-control mb-3">
-                                                <label className="label">
-                                                    <span className="label-text font-medium">Food Image</span>
-                                                </label>
-                                                <input type="text" value={food?.foodImg} name='food_img' className="input input-bordered focus-within:outline-none" readOnly />
-                                            </div>
-
-                                            <div className="flex gap-5 md:flex-row flex-col">
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Your Name</span>
-                                                    </label>
-                                                    <input type="text" value={user?.displayName} name='name' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Your Email</span>
-                                                    </label>
-                                                    <input type="text" value={user?.email} name='email' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                            </div>
-
-                                            <div className="form-control mb-3">
-                                                <label className="label">
-                                                    <span className="label-text font-medium">Your Image</span>
-                                                </label>
-                                                <input type="text" value={user?.photoURL} name='user_img' className="input input-bordered focus-within:outline-none" readOnly />
-                                            </div>
-
-                                            <div className='flex gap-5 md:flex-row flex-col'>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Pickup Location</span>
-                                                    </label>
-                                                    <input type="text" value={food?.location} name='location' className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                                <div className="form-control md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Food Expire Date</span>
-                                                    </label>
-                                                    <input type="date" name='date' value={food?.expDate} className="input input-bordered" readOnly />
-                                                </div>
-                                            </div>
-
-                                            <div className='flex md:flex-row flex-col gap-5'>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Request Date</span>
-                                                    </label>
-                                                    <input type="text" name='req_date' value={date} className="input input-bordered focus-within:outline-none" readOnly />
-                                                </div>
-                                                <div className="form-control mb-3 md:w-1/2">
-                                                    <label className="label">
-                                                        <span className="label-text font-semibold">Donation Money</span>
-                                                    </label>
-                                                    <input type="text" placeholder="Donate Money" name='money' className="input input-bordered focus-within:outline-none" />
-                                                </div>
-                                            </div>
-
-                                            <div className="form-control mb-3 w-full">
-                                                <label className="label">
-                                                    <span className="label-text font-semibold">Additional Notes</span>
-                                                </label>
-                                                <textarea className="textarea textarea-bordered focus-within:outline-none" name='note' placeholder="Write additional notes..."></textarea>
-                                            </div>
-
-                                            <div className="flex justify-end gap-10">
-                                                <div className="form-control">
-                                                    <button className="btn bg-lime-500 hover:bg-transparent hover:border-2 hover:border-green-500 hover:text-black text-white text-base px-10">Request A Food</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div className="modal-action px-8 mt-0">
-                                        <form method="dialog w-full">
-                                            <button className="btn text-base w-full border-2 border-green-600 bg-transparent hover:bg-lime-500 hover:text-white px-20">Close</button>
-                                        </form>
-                                    </div>
+                            <div className="flex items-center gap-3 my-5">
+                                <img src={food?.userImg} alt="" className="rounded-full w-12 h-12" />
+                                <div>
+                                    <p className="font-semibold">Donator: </p>
+                                    <p>{food?.userName}</p>
                                 </div>
-                            </dialog>
+                            </div>
+                            <div className="flex gap-2 flex-wrap">
+                                <p className="flex items-center gap-2"> <GoNumber className="text-xl"></GoNumber> <span className="font-semibold">Quantity:</span> {food.quantity}</p>
+                                <p className="flex items-center gap-2"> <IoLocationOutline className="text-xl"></IoLocationOutline> <span className="font-semibold">Location:</span> {food.location}</p>
+                                <p className="flex items-center gap-2"> <IoCalendarNumberOutline className="text-xl"></IoCalendarNumberOutline> <span className="font-semibold">Expire Date:</span> {food.expDate}</p>
+                            </div>
+                            <div className="card-actions justify-end">
+                                {/* Modal */}
+                                <button className="btn bg-lime-500 px-10 text-white hover:bg-lime-600" onClick={() => document.getElementById(_id).showModal()}>Request Food</button>
+                                <dialog id={_id} className="modal">
+                                    <div className="modal-box w-11/12 max-w-5xl">
+                                        <div className='card flex-shrink-0'>
+                                            <form onSubmit={handleRequestFood} className="card-body">
+                                                <div className="flex gap-5 md:flex-row flex-col">
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Donor Name</span>
+                                                        </label>
+                                                        <input type="text" value={food?.userName} name='donor_name' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Donor Email</span>
+                                                        </label>
+                                                        <input type="text" value={food?.email} name='donor_email' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex gap-5 md:flex-row flex-col">
+                                                    <div className="form-control mb-3 w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Food Name</span>
+                                                        </label>
+                                                        <input type="text" value={food?.foodTitle} name='food_title' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Food ID</span>
+                                                        </label>
+                                                        <input type="text" value={food?._id} name='food_id' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                </div>
+
+                                                <div className="form-control mb-3">
+                                                    <label className="label">
+                                                        <span className="label-text font-medium">Food Image</span>
+                                                    </label>
+                                                    <input type="text" value={food?.foodImg} name='food_img' className="input input-bordered focus-within:outline-none" readOnly />
+                                                </div>
+
+                                                <div className="flex gap-5 md:flex-row flex-col">
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Your Name</span>
+                                                        </label>
+                                                        <input type="text" value={user?.displayName} name='name' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Your Email</span>
+                                                        </label>
+                                                        <input type="text" value={user?.email} name='email' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                </div>
+
+                                                <div className="form-control mb-3">
+                                                    <label className="label">
+                                                        <span className="label-text font-medium">Your Image</span>
+                                                    </label>
+                                                    <input type="text" value={user?.photoURL} name='user_img' className="input input-bordered focus-within:outline-none" readOnly />
+                                                </div>
+
+                                                <div className='flex gap-5 md:flex-row flex-col'>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Pickup Location</span>
+                                                        </label>
+                                                        <input type="text" value={food?.location} name='location' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                    <div className="form-control md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Food Expire Date</span>
+                                                        </label>
+                                                        <input type="date" name='date' value={food?.expDate} className="input input-bordered" readOnly />
+                                                    </div>
+                                                </div>
+
+                                                <div className='flex md:flex-row flex-col gap-5'>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Request Date</span>
+                                                        </label>
+                                                        <input type="text" name='req_date' value={date} className="input input-bordered focus-within:outline-none" readOnly />
+                                                    </div>
+                                                    <div className="form-control mb-3 md:w-1/2">
+                                                        <label className="label">
+                                                            <span className="label-text font-semibold">Donation Money</span>
+                                                        </label>
+                                                        <input type="text" placeholder="Donate Money" name='money' className="input input-bordered focus-within:outline-none" />
+                                                    </div>
+                                                </div>
+
+                                                <div className="form-control mb-3 w-full">
+                                                    <label className="label">
+                                                        <span className="label-text font-semibold">Additional Notes</span>
+                                                    </label>
+                                                    <textarea className="textarea textarea-bordered focus-within:outline-none" name='note' placeholder="Write additional notes..."></textarea>
+                                                </div>
+
+                                                <div className="flex justify-end gap-10">
+                                                    <div className="form-control">
+                                                        <button className="btn bg-lime-500 hover:bg-transparent hover:border-2 hover:border-green-500 hover:text-black text-white text-base px-10">Request A Food</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div className="modal-action px-8 mt-0">
+                                            <form method="dialog w-full">
+                                                <button className="btn text-base w-full border-2 border-green-600 bg-transparent hover:bg-lime-500 hover:text-white px-20">Close</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { login, googleSignIn } = useAuth()
@@ -52,6 +53,9 @@ const Login = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Food Share || Login</title>
+            </Helmet>
             <div className="max-w-7xl h-[700px] flex items-center mx-auto lg:px-0 md:px-0 px-5">
                 <div className="card flex-shrink-0 w-full max-w-lg shadow-xl mx-auto">
                     <form onSubmit={handleLogin} className="card-body">

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUser } = useAuth()
@@ -59,6 +60,9 @@ const Register = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Food Share || Register</title>
+            </Helmet>
             <div className="max-w-7xl h-screen flex items-center mx-auto lg:px-0 md:px-0 px-5">
                 <div className="card flex-shrink-0 w-full max-w-lg shadow-xl mx-auto">
                     <form onSubmit={handleRegister} className="card-body">

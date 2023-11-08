@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useTable } from 'react-table'
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageFood = () => {
     const { user } = useAuth()
@@ -79,6 +80,9 @@ const ManageFood = () => {
     return (
 
         <div>
+            <Helmet>
+                <title>Food Share || Manage Foods</title>
+            </Helmet>
             <div className="max-w-7xl mx-auto my-28">
                 <div>
                     <h2 className="text-4xl font-bold my-14 text-center">Manage your Foods</h2>

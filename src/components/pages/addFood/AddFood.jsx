@@ -3,6 +3,7 @@ import Donation from '../../../assets/donation.json'
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
     const { user } = useAuth()
@@ -41,6 +42,9 @@ const AddFood = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Food Share || Add Food</title>
+            </Helmet>
             <div className='max-w-7xl mx-auto lg:px-0 md:px-10 px-5 my-32'>
                 <div className='my-10'>
                     <h2 className='text-center lg:text-5xl md:text-4xl text-3xl font-bold'>Add your Food</h2>

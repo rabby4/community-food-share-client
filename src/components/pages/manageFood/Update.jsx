@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import customize from '../../../assets/Update.json'
+import { Helmet } from "react-helmet-async";
 
 const Update = () => {
     const { user } = useAuth()
@@ -39,6 +40,9 @@ const Update = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Food Share || Update {food.foodTitle}</title>
+            </Helmet>
             <div className='max-w-7xl mx-auto lg:px-0 md:px-10 px-5 my-32'>
                 <div className='my-10'>
                     <h2 className='text-center lg:text-5xl md:text-4xl text-3xl font-bold'>Update your Food Info</h2>

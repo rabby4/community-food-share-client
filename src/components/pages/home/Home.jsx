@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { GoNumber } from 'react-icons/go';
 import { IoCalendarNumberOutline, IoLocationOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const [foods, setFoods] = useState()
@@ -34,6 +35,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Food Share || Home</title>
+            </Helmet>
             <div className="hero min-h-[700px]" style={{ backgroundImage: 'url(https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/Feeding-Families-mother-and-daughter.png)' }}>
                 <div className="hero-overlay bg-opacity-50"></div>
                 <div className="max-w-7xl">
