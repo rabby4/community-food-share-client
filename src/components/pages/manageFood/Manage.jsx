@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Manage = () => {
     const axiosSecure = useAxiosSecure()
@@ -18,7 +19,20 @@ const Manage = () => {
     const filteredFood = requestFood?.find(reqFood => reqFood?.foodId === food?._id)
     console.log(filteredFood)
 
+    const handleConfirm = (id) => {
+        axiosSecure.patch(`/request/${id}`, { status: 'Delivered' })
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Your Food Uploaded Successfully!",
+                        icon: "success"
+                    });
+                }
+            })
 
+    }
 
 
 
@@ -62,7 +76,7 @@ const Manage = () => {
                                     <p><strong></strong> {filteredFood?.reqDate}</p>
                                 </td>
                                 <td className=''>
-                                    <p><strong></strong> {filteredFood?.status}</p>
+                                    <button onClick={() => handleConfirm(filteredFood._id)} className="font-bold">{filteredFood?.status}</button>
                                 </td>
 
                             </tr> :

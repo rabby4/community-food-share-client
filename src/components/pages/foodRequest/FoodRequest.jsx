@@ -93,7 +93,7 @@ const FoodRequest = () => {
                                     <p className="text-base"><strong>$</strong> {food.price}</p>
                                 </td>
                                 <td className=''>
-                                    <p className="text-base">{food.status}</p>
+                                    <p className="text-base font-semibold">{food.status}</p>
                                 </td>
                                 <td className=''>
                                     <button onClick={() => handleCancel(food._id)} className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500">Cancel</button>
