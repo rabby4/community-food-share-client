@@ -46,15 +46,15 @@ const AvailableFood = () => {
             </div>
             <div className="grid grid-cols-3 gap-10">
                 {
-                    filteredFoodItems?.map(food => <div key={food._id}>
+                    filteredFoodItems?.map(food => <div key={food?._id}>
                         <div className="card bg-[#f9f9f9] shadow-md">
                             <div className="flex items-center justify-center p-8">
-                                <img src={food.foodImg} alt={food.foodTitle} className="w-2/3" />
+                                <img src={food?.foodImg} alt={food?.foodTitle} className="w-2/3" />
                             </div>
                             <div className="card-body">
                                 <h2 className="card-title">
-                                    {food.foodTitle}
-                                    <div className="badge bg-green-600 text-white">{food.status}</div>
+                                    {food?.foodTitle}
+                                    <div className="badge bg-green-600 text-white">{food?.status}</div>
                                 </h2>
                                 <p>{food.notes.slice(0, 100)}...</p>
                                 <div className="flex items-center gap-3 my-2">

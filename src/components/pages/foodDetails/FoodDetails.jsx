@@ -10,7 +10,7 @@ const FoodDetails = () => {
     const axiosSecure = useAxiosSecure()
     const food = useLoaderData()
     // console.log(food)
-    const { _id, userName, email, foodTitle, foodImg, expDate, location, status, notes } = food;
+    const { _id, status } = food;
 
     const date = new Date()
 
@@ -35,6 +35,7 @@ const FoodDetails = () => {
 
         axiosSecure.post('/request', newFoodRequest)
             .then(res => {
+                console.log(res.data)
                 if (res.data.acknowledged === true) {
                     toast.success('Food uploaded successfully')
                 }
@@ -55,18 +56,18 @@ const FoodDetails = () => {
             <div className="my-10">
                 <div className="card lg:card-side">
                     <figure className="w-1/2">
-                        <img src={foodImg} alt="Album" />
+                        <img src={food?.foodImg} alt="Album" />
                     </figure>
                     <div className="card-body w-1/2">
-                        <h2 className="card-title text-5xl font-bold">{foodTitle}</h2>
+                        <h2 className="card-title text-5xl font-bold">{food?.foodTitle}</h2>
                         <div>
-                            <p>{notes}</p>
+                            <p>{food?.notes}</p>
                         </div>
                         <div className="flex items-center gap-3 my-5">
-                            <img src={food.userImg} alt="" className="rounded-full w-12 h-12" />
+                            <img src={food?.userImg} alt="" className="rounded-full w-12 h-12" />
                             <div>
                                 <p className="font-semibold">Donator: </p>
-                                <p>{food.userName}</p>
+                                <p>{food?.userName}</p>
                             </div>
                         </div>
                         <div className="flex gap-2 flex-wrap">
@@ -86,13 +87,13 @@ const FoodDetails = () => {
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Donor Name</span>
                                                     </label>
-                                                    <input type="text" value={userName} name='donor_name' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    <input type="text" value={food?.userName} name='donor_name' className="input input-bordered focus-within:outline-none" readOnly />
                                                 </div>
                                                 <div className="form-control mb-3 md:w-1/2">
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Donor Email</span>
                                                     </label>
-                                                    <input type="text" value={email} name='donor_email' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    <input type="text" value={food?.email} name='donor_email' className="input input-bordered focus-within:outline-none" readOnly />
                                                 </div>
                                             </div>
 
@@ -101,13 +102,13 @@ const FoodDetails = () => {
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Food Name</span>
                                                     </label>
-                                                    <input type="text" value={foodTitle} name='food_title' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    <input type="text" value={food?.foodTitle} name='food_title' className="input input-bordered focus-within:outline-none" readOnly />
                                                 </div>
                                                 <div className="form-control mb-3 md:w-1/2">
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Food ID</span>
                                                     </label>
-                                                    <input type="text" value={_id} name='food_id' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    <input type="text" value={food?._id} name='food_id' className="input input-bordered focus-within:outline-none" readOnly />
                                                 </div>
                                             </div>
 
@@ -115,7 +116,7 @@ const FoodDetails = () => {
                                                 <label className="label">
                                                     <span className="label-text font-medium">Food Image</span>
                                                 </label>
-                                                <input type="text" value={foodImg} name='food_img' className="input input-bordered focus-within:outline-none" readOnly />
+                                                <input type="text" value={food?.foodImg} name='food_img' className="input input-bordered focus-within:outline-none" readOnly />
                                             </div>
 
                                             <div className="flex gap-5 md:flex-row flex-col">
@@ -145,13 +146,13 @@ const FoodDetails = () => {
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Pickup Location</span>
                                                     </label>
-                                                    <input type="text" value={location} name='location' className="input input-bordered focus-within:outline-none" readOnly />
+                                                    <input type="text" value={food?.location} name='location' className="input input-bordered focus-within:outline-none" readOnly />
                                                 </div>
                                                 <div className="form-control md:w-1/2">
                                                     <label className="label">
                                                         <span className="label-text font-semibold">Food Expire Date</span>
                                                     </label>
-                                                    <input type="date" name='date' value={expDate} className="input input-bordered" readOnly />
+                                                    <input type="date" name='date' value={food?.expDate} className="input input-bordered" readOnly />
                                                 </div>
                                             </div>
 

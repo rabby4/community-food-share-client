@@ -15,7 +15,7 @@ const Manage = () => {
                 setRequestFood(res.data)
             })
     }, [axiosSecure, user?.email])
-    const filteredFood = requestFood?.find(reqFood => reqFood.foodId === food._id)
+    const filteredFood = requestFood?.find(reqFood => reqFood?.foodId === food?._id)
     console.log(filteredFood)
 
 
@@ -47,7 +47,7 @@ const Manage = () => {
                                     <div className="flex items-center space-x-1">
                                         <div className="avatar">
                                             <div className="mask mask-squircle  w-24 h-24">
-                                                <img src={filteredFood?.userImg} alt="Avatar Tailwind CSS Component" />
+                                                <img src={filteredFood?.userImg} alt="Requester images" />
                                             </div>
                                         </div>
 

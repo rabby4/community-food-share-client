@@ -16,6 +16,10 @@ const FoodRequest = () => {
     const myFood = foodRequest?.filter(food => food?.email === user?.email)
     console.log(myFood)
 
+    const handleCancel = (id) => {
+        console.log(id)
+    }
+
 
     return (
         <div className="max-w-7xl mx-auto my-28">
@@ -60,7 +64,7 @@ const FoodRequest = () => {
                                     <p className="text-base">{food.status}</p>
                                 </td>
                                 <td className=''>
-                                    <button className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500">Cancel</button>
+                                    <button onClick={() => handleCancel(food._id)} className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500">Cancel</button>
                                 </td>
                             </tr>)
                         }
