@@ -21,10 +21,6 @@ const ManageFood = () => {
             Header: 'Food Name',
             accessor: "foodTitle"
         },
-        // {
-        //     Header: 'Quantity',
-        //     accessor: "quantity"
-        // },
         {
             Header: 'Expire Date',
             accessor: "expDate"
