@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import Donation from '../../../assets/donation.json'
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
     const { user } = useAuth()
@@ -26,7 +26,11 @@ const AddFood = () => {
         axiosSecure.post('/foods', newFood)
             .then(res => {
                 if (res.data.acknowledged === true) {
-                    toast.success('Food uploaded successfully')
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Your Food Uploaded Successfully!",
+                        icon: "success"
+                    });
                 }
             })
             .catch(err => {

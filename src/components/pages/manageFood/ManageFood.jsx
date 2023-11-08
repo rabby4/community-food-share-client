@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useTable } from 'react-table'
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageFood = () => {
     const { user } = useAuth()
@@ -14,6 +15,35 @@ const ManageFood = () => {
                 setManagedFood(res.data)
             })
     }, [axiosSecure, user?.email])
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`http://localhost:5000/foods/${id}`)
+                    .then(res => {
+                        console.log(res.data)
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            const remainingFood = managedFood.filter(product => product._id !== id)
+                            setManagedFood(remainingFood)
+                            window.location.reload()
+                        }
+                    })
+            }
+        });
+    }
 
     const data = React.useMemo(() => managedFood, [managedFood])
     const columns = React.useMemo(() => [
@@ -37,7 +67,7 @@ const ManageFood = () => {
                     <Link to={`/update/${row.value}`} className="bg-lime-500 hover:bg-lime-600 px-7 py-2 rounded-md text-white duration-500	">Update</Link>
                     <br />
                     <Link to={`/manage/${row.value}`} className="bg-yellow-400 hover:bg-yellow-500 px-7 py-2 rounded-md text-black duration-500	">Manage</Link>
-                    <button className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500	ml-4">Delete</button>
+                    <button onClick={() => handleDelete(row.value)} className="bg-red-500 hover:bg-red-600 px-7 py-2 rounded-md text-white duration-500 ml-4">Delete</button>
                 </div>
             ),
         }
