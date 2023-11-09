@@ -29,7 +29,7 @@ const FoodRequest = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`http://localhost:5000/request/${id}`)
+                axiosSecure.delete(`/request/${id}`)
                     .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {

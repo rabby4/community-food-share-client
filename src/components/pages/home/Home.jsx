@@ -40,19 +40,19 @@ const Home = () => {
             </Helmet>
             <div className="hero min-h-[700px]" style={{ backgroundImage: 'url(https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/Feeding-Families-mother-and-daughter.png)' }}>
                 <div className="hero-overlay bg-opacity-50"></div>
-                <div className="max-w-7xl">
+                <div className="max-w-7xl md:px-10 px-5">
                     <div className="text-white text-center">
-                        <h1 className="mb-5 text-7xl font-bold italic">Working Together, <br />To Feed Our Neighbors</h1>
+                        <h1 className="mb-5 lg:text-7xl md:text-6xl text-4xl font-bold italic">Working Together, <br />To Feed Our Neighbors</h1>
                         <p className="mb-5">Community Food Share is a food bank fighting hunger in Boulder and Broomfield Counties by providing access to fresh, <br />nutritious food through our programs and local partners. To read more about our mission and how we work to ensure <br />all of our neighbors have access to the food they need, click the link below.</p>
                         <button className="btn bg-lime-500 hover:bg-lime-600 text-white border-none px-8">Get Started</button>
                     </div>
                 </div>
             </div>
-            <div className='max-w-7xl mx-auto my-28'>
+            <div className='max-w-7xl mx-auto my-28 lg:px-0 md:px-5 px-10'>
                 <div className='my-20'>
                     <h2 className='lg:text-5xl md:text-4xl text-3xl font-bold text-center'>Featured Foods</h2>
                 </div>
-                <div className="grid grid-cols-3 gap-10">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-10 md:gap-8 gap-10">
                     {
                         sortFoods?.slice(0, 6).map(food => <div key={food._id}>
                             <div className="card bg-[#f9f9f9] shadow-md">
@@ -94,13 +94,13 @@ const Home = () => {
                 </div>
             </div>
             <div className="bg-cover bg-center py-36" style={{ backgroundImage: 'url(https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/03/map.jpg)' }}>
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-7xl mx-auto lg:px-0 md:px-10 px-5">
                     <div className="text-center mb-10">
                         <h2 className="text-4xl font-bold">Find Food Resources Near You</h2>
                         <p className="text-xl my-3">Search our map to find free groceries and meals at a food pantry or program near you.</p>
                     </div>
-                    <div className="grid grid-cols-3 justify-items-center">
-                        <div className="card w-96 bg-base-100 shadow-xl">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10  justify-items-center">
+                        <div className="card bg-base-100 shadow-xl">
                             <figure className="px-8 pt-10">
                                 <img src="https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/05/343A8079-4-scaled.jpg" alt="Shoes" className="rounded-xl" />
                             </figure>
@@ -112,7 +112,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card w-96 bg-base-100 shadow-xl">
+                        <div className="card bg-base-100 shadow-xl">
                             <figure className="px-8 pt-10">
                                 <img src="https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/05/343A8171-3-scaled.jpg" alt="Shoes" className="rounded-xl" />
                             </figure>
@@ -124,7 +124,7 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="card w-96 bg-base-100 shadow-xl">
+                        <div className="card bg-base-100 shadow-xl">
                             <figure className="px-8 pt-10">
                                 <img src="https://cfsstaging.mystagingwebsite.com/wp-content/uploads/2023/05/Volunteer-in-Feeding-Families-scaled.jpg" alt="Shoes" className="rounded-xl" />
                             </figure>
@@ -140,8 +140,8 @@ const Home = () => {
                 </div>
             </div>
             <div className='max-w-7xl mx-auto py-24'>
-                <div className='grid grid-cols-3 justify-items-center items-center'>
-                    <div className="card w-96">
+                <div className='grid lg:grid-cols-3 md:grid-cols-1 grid-cols-1 justify-items-center items-center'>
+                    <div className="card">
                         <figure className="px-10 pt-10">
                             <img src="https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/shopping-bag-graphic.png" alt="Shoes" className="rounded-xl w-20" />
                         </figure>
@@ -169,7 +169,7 @@ const Home = () => {
                             <p className='font-semibold'>Meals distributed in 2022</p>
                         </div>
                     </div>
-                    <div className="card w-96">
+                    <div className="card">
                         <figure className="px-10 pt-10">
                             <img src="https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/elephant-graphic.png" alt="Shoes" className="rounded-xl w-20" />
                         </figure>
@@ -197,7 +197,7 @@ const Home = () => {
                             <p className='font-semibold'>Pounds of food rescued each year</p>
                         </div>
                     </div>
-                    <div className="card w-96">
+                    <div className="card">
                         <figure className="px-10 pt-10">
                             <img src="https://149797850.v2.pressablecdn.com/wp-content/uploads/2023/07/coin-graphic.png" alt="Shoes" className="rounded-xl w-20" />
                         </figure>

@@ -1,8 +1,11 @@
-# React + Vite
+# Community Food Share
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+About community food share:
 
-Currently, two official plugins are available:
+- Anybody can join/login on community food share team and can share there foods
+- Donor can manage her shared/uploaded foods
+- Donor can change the status (Available/Delivered) of her shared/uploaded foods
+- Also donor can delete her foods
+- User can request and pickup the food on the mentioned location
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live like: https://food-sharing-bc5b4.web.app/
