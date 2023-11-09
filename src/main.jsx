@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/availableFood',
-        element: <PrivateRoute><AvailableFood></AvailableFood></PrivateRoute>
+        element: <AvailableFood></AvailableFood>
       },
       {
         path: '/manageFood',

@@ -25,6 +25,16 @@ const AvailableFood = () => {
     }, [axiosSecure])
     const filteredFoodItems = searchItems ? foods.filter(food => food.foodTitle.toLowerCase().includes(searchItems.toLowerCase())) : foods;
 
+    // const sortFoodByDate = (data) => {
+    //     return data?.sort((a, b) => {
+    //         const firstData = new Date(a.expDate)
+    //         const secondData = new Date(b.expDate)
+    //         return firstData - secondData
+    //     })
+    // }
+
+    // const sortFoods = sortFoodByDate(foods)
+
     if (isLoading) {
         return 'loading...'
     }
@@ -44,9 +54,9 @@ const AvailableFood = () => {
                         <button className="btn join-item bg-lime-500 text-white px-7 hover:bg-lime-600" onClick={() => setSearchItems('')}>Clear</button>
                     </div>
                     <select className="select select-bordered w-full max-w-xs">
+                        <option disabled>Sort Food</option>
                         <option>All</option>
-                        <option>Han Solo</option>
-                        <option>Greedo</option>
+                        <option>Sort by Expire Date</option>
                     </select>
                 </div>
                 <div className="grid grid-cols-3 gap-10">

@@ -50,7 +50,7 @@ const FoodDetails = () => {
     return (
         <div>
             <Helmet>
-                <title>Food Share || Details of {food.foodTitle} Food</title>
+                <title>Food Share || Details of Food</title>
             </Helmet>
             <div className="max-w-7xl mx-auto">
                 <div className='my-10 lg:px-0 md:px-10 px-5'>
