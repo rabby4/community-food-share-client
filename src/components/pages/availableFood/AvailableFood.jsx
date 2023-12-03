@@ -50,7 +50,7 @@ const AvailableFood = () => {
                 </div>
                 <div className="flex justify-between my-14">
                     <div className="join">
-                        <input className="input input-bordered join-item focus-within:outline-none" type="text" placeholder="Search Food..." id="searchBox" value={searchItems} onSubmit={(e) => setSearchItems(e.target.value)} />
+                        <input className="input input-bordered join-item focus-within:outline-none" type="text" placeholder="Search Food..." id="searchBox" value={searchItems} onChange={(e) => setSearchItems(e.target.value)} />
                         <button className="btn join-item bg-lime-500 text-white px-7 hover:bg-lime-600" onClick={() => setSearchItems('')}>Clear</button>
                     </div>
                     <select className="select select-bordered w-full max-w-xs">

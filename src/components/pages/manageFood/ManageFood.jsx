@@ -92,7 +92,7 @@ const ManageFood = () => {
                         <thead className="bg-green-600 text-white text-base">
                             {headerGroups.map((headerGroup) => (
                                 <tr key={headerGroup.id} {...headerGroup.getFooterGroupProps()}>
-                                    {headerGroup.headers.map((column) => (
+                                    {headerGroup?.headers?.map((column) => (
                                         <th key={column.id} {...column.getHeaderProps()} className="">
                                             {column.render('Header')}
                                         </th>

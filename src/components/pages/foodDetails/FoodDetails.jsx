@@ -3,8 +3,8 @@ import { IoArrowUndoSharp, IoCalendarNumberOutline, IoLocationOutline } from "re
 import { Link, useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
     const { user } = useAuth()
@@ -38,7 +38,11 @@ const FoodDetails = () => {
             .then(res => {
                 console.log(res.data)
                 if (res.data.acknowledged === true) {
-                    toast.success('Food uploaded successfully')
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You have successfully request for a food!",
+                        icon: "success"
+                    });
                 }
             })
             .catch(err => {
