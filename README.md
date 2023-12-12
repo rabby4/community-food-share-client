@@ -1,11 +1,19 @@
 # Community Food Share
 
-About community food share:
+### About community food share:
 
-- Anybody can join/login on community food share team and can share there foods
+- Anybody can join/log on community food share team and can share their foods
 - Donor can manage her shared/uploaded foods
 - Donor can change the status (Available/Delivered) of her shared/uploaded foods
 - Also donor can delete her foods
-- User can request and pickup the food on the mentioned location
+- User can request and pick up the food at the mentioned location
 
-Live like: https://food-sharing-bc5b4.web.app/
+### technology that I used for this project:
+- Html
+- Css
+- Javascript
+- React
+- Tailwind
+- React Router
+- Firebase
+- Lottie Animation
