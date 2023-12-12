@@ -148,12 +148,14 @@ const Home = () => {
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-4xl">
                                 <CountUp
-                                    start={-875.039}
+                                    start={0}
                                     end={8107090}
                                     duration={2.75}
                                     separator=","
                                     decimals={0}
                                     decimal=","
+                                    enableScrollSpy
+                                    scrollSpyDelay={500}
                                     onEnd={() => console.log('Ended! 👏')}
                                     onStart={() => console.log('Started! 💨')}
                                 >
@@ -176,12 +178,14 @@ const Home = () => {
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-4xl">
                                 <CountUp
-                                    start={-875.039}
+                                    start={0}
                                     end={8760000}
                                     duration={2.75}
                                     separator=","
                                     decimals={0}
                                     decimal=","
+                                    enableScrollSpy
+                                    scrollSpyDelay={500}
                                     onEnd={() => console.log('Ended! 👏')}
                                     onStart={() => console.log('Started! 💨')}
                                 >
@@ -204,13 +208,15 @@ const Home = () => {
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-4xl">
                                 <CountUp
-                                    start={-875.039}
+                                    start={0}
                                     end={18800000}
                                     duration={2.75}
                                     separator=","
                                     decimals={0}
                                     decimal=","
                                     prefix="$ "
+                                    enableScrollSpy
+                                    scrollSpyDelay={500}
                                     onEnd={() => console.log('Ended! 👏')}
                                     onStart={() => console.log('Started! 💨')}
                                 >
